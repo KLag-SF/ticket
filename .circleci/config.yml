@@ -2,7 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2
+version: 2.1
+
 orbs:
   chatwork: guitarrapc/chatwork@0.0.2
 
