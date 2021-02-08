@@ -15,7 +15,7 @@ class CreatePLvTable extends Migration
     {
         Schema::create('plv', function (Blueprint $table) {
             $table->integer('level');
-            $table->string('name');
+            $table->string('role_name');
         });
     }
 
