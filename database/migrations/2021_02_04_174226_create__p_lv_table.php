@@ -26,6 +26,6 @@ class CreatePLvTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_p_lv');
+        Schema::dropIfExists('plv');
     }
 }
