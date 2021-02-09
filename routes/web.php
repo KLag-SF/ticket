@@ -13,12 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/login');
+Route::get('/', function (){
+    return redirect('/home');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('/home', 'UserPageController');
+Route::resource('/home', 'UserPageController')->middleware('verified');
+
+Route::get('/logout',function ($request){
+   Auth::logout();
+   $request->session()->invalidate();
+   $request->session()->regenerateToken();
+   return redirect('/login');
+});
