@@ -5,6 +5,11 @@
     Name:{{$user->name}}
 </div>
 <div>
+    <button type="button" onclick="location.href='/group/create'" class="btn btn-success">
+        NEW GROUP
+    </button>
+</div>
+<div>
     Groups which you are belonging
     <table class="table">
         <thead>
