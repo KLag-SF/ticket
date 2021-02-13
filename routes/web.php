@@ -17,11 +17,9 @@ Route::get('/', function (){
     return redirect('/home');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::resource('/home', 'UserPageController')->middleware('verified');
+
+Route::resource('/group', 'GroupController');
 
 Route::get('/logout',function ($request){
    Auth::logout();
