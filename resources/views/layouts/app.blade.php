@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -27,13 +26,13 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-
-            <header>
+        <header>
                 <nav class="navbar">
                     navbar here! For debug.....
                     <a href="/login">Login</a>
                     <a href="/register">Register</a>
                     <a href="/home">Home</a>
+                    
                     <div id="logout">
                         <a href="/logout"
                            onclick="event.preventDefault();
@@ -46,7 +45,7 @@
                     </div>
                 </nav>
             </header>
-
+        
             <!-- Page Content -->
             <main>
                 @yield('content')

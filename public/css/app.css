@@ -14,7 +14,11 @@ Use a better box model (opinionated).
 *::after {
   box-sizing: border-box;
 }
-
+header{
+  font-size:140%;
+  color:gray;
+  background-color:white;
+}
 /**
 Use a more readable tab size (opinionated).
 */
@@ -192153,4 +192157,3 @@ select {
             animation: bounce 1s infinite;
   }
 }
-
