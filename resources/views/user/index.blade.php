@@ -14,6 +14,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>GID</th>
                 <th>Name</th>
                 <th>Permission</th>
             </tr>
@@ -21,8 +22,9 @@
         <tbody>
             @foreach($groups as $group)
             <tr>
+                <td>{{$group->group_id}}</td>
                 <td>{{$group->group_name}}</td>
-                <td>{{$group->role_name}}
+                <td>{{$group->role_name}}</td>
             </tr>
             @endforeach
         </tbody>
