@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +14,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Root redirect
 Route::get('/', function (){
     return redirect('/home');
 });
 
+// User home
 Route::resource('/home', 'UserPageController')->middleware('verified');
 
-Route::resource('/group', 'GroupController');
+// Group create page
+Route::get('/group/create', 'GroupController@create');
+// Create new group(POST)
+Route::post('/group', 'GroupController@store');
+// Group main page
+Route::get('/group/{id}', 'GroupController@show');
+// Group edit page
+Route::get('/group/{id}/edit', 'GroupController@edit');
 
+// Group's member list
+Route::get('/group/{id}/member', 'PermissionController@show');
+// Add new member page
+Route::get('/group/{id}/member/add', 'PermissionController@create');
+// Create new permission process
+Route::post('/permission', 'PermissionController@store');
+
+// Logout process
 Route::get('/logout',function ($request){
    Auth::logout();
    $request->session()->invalidate();
    $request->session()->regenerateToken();
    return redirect('/login');
+});
+
+/*-----------------------------------------
+| Following routes are used for debugging. |
+------------------------------------------*/
+
+Route::get('/403', function(){
+    return view('error.forbidden');
+});
+
+Route::get('/404', function(){
+    return view('error.userNotFound');
 });
