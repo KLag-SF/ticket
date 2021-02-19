@@ -14,6 +14,35 @@ Use a better box model (opinionated).
 *::after {
   box-sizing: border-box;
 }
+header{
+  font-size:140%;
+  color:black;
+  background-color:teal;
+}
+.user_header{
+  font-size:200%;
+  color:white;
+  background-color:#9933FF;
+}
+.form-group{
+  right: 20px; /*（left）に変更すると左 */
+  padding: 0 .5em;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #9933FF; /* タイトル色 */
+  background-color: #fff;
+}
+.kakomi-maru4 {
+  position: relative;
+  margin: 2em auto;
+  padding: 1.2em;
+  width: 90%;
+  border: 2px solid #ff9ece; /* 枠線の太さ・色 */
+  color: #555555; /* 文字色 */
+  background-color: #fff;
+  box-shadow: 2px 2px 1px #c7c7c7;/* 影の色 */
+  border-radius: 8px; /* 角の丸み */
+ }
 
 /**
 Use a more readable tab size (opinionated).
@@ -164,7 +193,10 @@ table {
   text-indent: 0; /* 1 */
   border-color: inherit; /* 2 */
 }
-
+.form-group{
+  size:50%;
+  margin:2% 20%;
+}
 /*
 Forms
 =====
@@ -192153,4 +192185,3 @@ select {
             animation: bounce 1s infinite;
   }
 }
-
