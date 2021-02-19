@@ -16,8 +16,8 @@ Use a better box model (opinionated).
 }
 header{
   font-size:140%;
-  color:gray;
-  background-color:white;
+  color:black;
+  background-color:teal;
 }
 
 /**

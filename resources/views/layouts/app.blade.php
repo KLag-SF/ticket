@@ -26,7 +26,7 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-        <header>
+      
                 <nav class="navbar">
                     navbar here! For debug.....
                     <a href="/login">Login</a>
@@ -44,7 +44,7 @@
                         </form>
                     </div>
                 </nav>
-            </header>
+          
         
             <!-- Page Content -->
             <main>
