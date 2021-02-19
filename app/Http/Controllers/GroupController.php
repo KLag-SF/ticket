@@ -29,8 +29,8 @@ class GroupController extends Controller
         $permission->permission_level = 1;
         $permission->save();
 
-        // Redirect to user's page
-        return redirect('/home');
+        // Redirect to created group page
+        return redirect('/group/'.$permission->group_id);
     }
 
     public function create(){
