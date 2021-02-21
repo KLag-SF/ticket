@@ -13,7 +13,7 @@
 
 	    Group:
 </div>
-    <div>
+    <div class="table_main">
         <table class="table">
             <thead>
                 <tr>
