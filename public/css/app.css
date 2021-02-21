@@ -20,7 +20,7 @@ nav{
   background-color: #98CCFF;
   top: 0;
   transform : perspective(120px)
-  rotateX(6deg);
+  rotateX(3deg);
   box-shadow: 2px 2px 4px;
 }
 
@@ -15495,6 +15495,7 @@ select {
 }
 
 .min-h-screen {
+  background-color:#99CCFF;
   min-height: 100vh;
 }
 
