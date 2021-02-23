@@ -24,11 +24,21 @@
             <tbody>
                 @foreach($groups as $group)
                 <tr>
-                    <td>{{$group->group_name}}</td>
-                    <td>{{$group->role_name}}
+                    <span class='click_available'>
+                        <td onclick="jump({{$loop->iteration}})">
+                        {{$group->group_name}} 
+                         </td>
+                        <td>{{$group->role_name}}
+                    </span>  
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    <script type="text/javascript">
+    let jump = function (iteration){
+        window.location.href= "group/" + iteration+  "/member";
+        //alert("詳細画面へ");
+    };
+</script>
 @endsection
