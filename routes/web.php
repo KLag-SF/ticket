@@ -38,6 +38,11 @@ Route::get('/group/{id}/member/add', 'PermissionController@create');
 // Create new permission process
 Route::post('/permission', 'PermissionController@store');
 
+// Page for new task form
+Route::get('/group/{id}/ticket', 'TaskController@create');
+// Create new ticket
+Route::post('/group/{id}/ticket', 'TaskController@store');
+
 // Logout process
 Route::get('/logout',function ($request){
    Auth::logout();
