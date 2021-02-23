@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\Group;
+use App\Models\Task;
 # use App\Models\Task;
 use Exception;
 use Illuminate\Support\Facades\App;
@@ -55,8 +56,8 @@ class GroupController extends Controller
                 App::abort(404);
             }
             // Get the group's task list
-            // $tasks = Task::where('group_id', $id)->get();
-            return view('group.index', compact('group'));
+            $tasks = Task::where('group_id', $id)->get();
+            return view('group.index', compact('group', 'tasks'));
         }else{
             // If the user doesn't have a permission, return "error" view
             return view('error.forbidden');
