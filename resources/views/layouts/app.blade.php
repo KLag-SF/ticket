@@ -28,7 +28,6 @@
         <div class="min-h-screen bg-gray-100">
       
                 <nav class="navbar">
-                    navbar here! For debug.....
                     <a href="/login">Login</a>
                     <a href="/register">Register</a>
                     <a href="/home">Home</a>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="group-name">
-        {{$group->group_name}}
+        GROUP:{{$group->group_name}}
     </div>
 
     <div class="add-user">
