@@ -39,7 +39,7 @@ Route::get('/group/{id}/member/add', 'PermissionController@create');
 Route::post('/permission', 'PermissionController@store');
 
 // Page for new task form
-Route::get('/group/{id}/ticket', 'TaskController@create');
+Route::get('/group/{id}/ticket', 'TaskController@create')->middleware('verified');
 // Create new ticket
 Route::post('/group/{id}/ticket', 'TaskController@store');
 
