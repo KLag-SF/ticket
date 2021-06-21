@@ -22,7 +22,7 @@ add_ssh_keys:
         fingerprints:
           -  b1:02:4b:12:ac:bd:b6:46:12:47:19:09:aa:82:71:5b
 
-    steps:
+steps:
     
       - checkout
 
