@@ -8,7 +8,7 @@ require 'recipe/laravel.php';
 set('application', 'ticket');
 
 // Project repository
-set('repository', 'git@github.com:dreadnought-inc/ticket.git');
+set('repository', 'git@github.com:KLag-SF/ticket.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true); 
@@ -35,10 +35,10 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('deploy.nova-tech.work')
+host('ec2-35-73-226-246.ap-northeast-1.compute.amazonaws.com')
     ->setSshArguments(['-o StrictHostKeyChecking=no'])
-    ->setRemoteUser('deploy')
-    ->setIdentityFile('~/.ssh/id_rsa')
+    ->setRemoteUser('klag')
+    ->setIdentityFile('~/.ssh/circleci')
     ->set('labels', ['stage' => 'staging'])
     ->set('deploy_path', '~/{{application}}');    
     
