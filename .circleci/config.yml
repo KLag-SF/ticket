@@ -19,6 +19,9 @@ jobs:
       # - image: redis:2.8.19
 
     steps:
+      - add_ssh_keys:
+        fingerprints:
+          - b1:02:4b:12:ac:bd:b6:46:12:47:19:09:aa:82:71:5b
       - checkout
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
