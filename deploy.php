@@ -38,7 +38,7 @@ add('writable_dirs', []);
 host('ec2-35-73-226-246.ap-northeast-1.compute.amazonaws.com')
     ->setSshArguments(['-o StrictHostKeyChecking=no'])
     ->setRemoteUser('klag')
-    ->setIdentityFile('~/.ssh/circleci')
+    ->setIdentityFile('~/.ssh/id_rsa')
     ->set('labels', ['stage' => 'staging'])
     ->set('deploy_path', '~/{{application}}');    
     
