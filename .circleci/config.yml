@@ -2,16 +2,12 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2.1
-
-orbs:
-  chatwork: guitarrapc/chatwork@0.0.2
-
+version: 2
 jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:8.0.0-node-browsers
+      - image: circleci/php:8.0-node-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -21,13 +17,8 @@ jobs:
       # - image: circleci/mysql:5.7-ram
       #
       # - image: redis:2.8.19
-      #working_directory: ~/laravel
 
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "5e:c7:88:53:e4:e4:ba:9d:03:72:bf:d7:cf:24:bd:5f"
-
       - checkout
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
@@ -38,19 +29,20 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - composer-v1-{{ checksum "composer.lock" }}
-            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
-            - composer-v1-
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: composer install -n --prefer-dist
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "composer.lock" }}
+          key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
 
       # prepare the database
-      - run: touch database/database.sqlite
+      - run: touch storage/testing.sqlite
       - run: php artisan migrate:fresh --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit or codecept
@@ -58,13 +50,6 @@ jobs:
       - run: ./vendor/bin/codecept build
       - run: ./vendor/bin/codecept run
       - run: ./vendor/bin/dep deploy
-      - chatwork/notify:
-          message: "[circleci] デプロイが完了しました。"
-          room_id: "207665476"
-      - chatwork/notify:
-          message: "[circleci] デプロイに失敗しました。"
-          room_id: "207665476"
-          when: on_fail
 
 workflows:
   version: 2
