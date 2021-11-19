@@ -1,7 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
+    <link rel="stylesheet" href="/css/group/add.css">
     <form method="POST" action="/permission">
+        <div>
+            Permission Level
+            <table>
+                <thead>
+                    <tr>
+                        <td>Permission</td>
+                        <td>グループ名変更・削除</td>
+                        <td>メンバー追加・削除</td>
+                        <td>タスク編集・削除</td>
+                        <td>タスクの追加・閲覧</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Administrator</td>
+                        <td>True</td>
+                        <td>True</td>
+                        <td>True</td>
+                        <td>True</td>
+                    </tr>
+                    <tr>
+                        <td>Manager</td>
+                        <td>False</td>
+                        <td>True</td>
+                        <td>True</td>
+                        <td>True</td>
+                    </tr>
+                    <tr>
+                        <td>Leader</td>
+                        <td>False</td>
+                        <td>False</td>
+                        <td>True</td>
+                        <td>True</td>
+                    </tr>
+                    <tr>
+                        <td>Member</td>
+                        <td>False</td>
+                        <td>False</td>
+                        <td>False</td>
+                        <td>True</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         @csrf
         <input type="hidden" name="group_id" value="{{$group->id}}"/>
         

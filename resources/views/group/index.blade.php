@@ -3,11 +3,31 @@
 @section('content')
 <body>
     <div class="group-header">
-        <a href="/group/{{$group->id}}/member">{{$group->group_name}}</a>
-        <button class="btn btn-primary"> New Ticket</button>
-        @foreach($tasks as $task)
-            {{$task->title}}
-        @endforeach
+        {{$group->group_name}}
+        <button class="btn btn-primary" onclick="location.href='{{$group->id}}/ticket'"> New Ticket</button>
+        <button class="btn btn-secondary" onclick="location.href='{{$group->id}}/member'">Member List</button>
+	<div class="table-main">
+		<table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+		            <th>Limit</th>
+		            <th>Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($tasks as $task)
+                    <tr>
+                        <span>
+                            <td onclick="location.href='/task/{{$task->id}}'"> {{$task->title}} </td>
+			                <td> {{$task->limit}} </td>
+		    	            <td> {{$task->progress}} &#37; </td>
+                        </span>  
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+	</div>
     </div>
 </body>
 @endsection

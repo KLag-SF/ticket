@@ -3,7 +3,7 @@
 @section('content')
 <div class='user_header'>
 	<div class="user_name">
- 	   Name:{{$user->name}}
+ 	    Name:{{$user->name}}  (ID:{{$user->id}})
 	</div>
 	<div class = 'group_create'>
     	<button type="button" onclick="location.href='/group/create'" class="btn btn-success">
@@ -37,7 +37,7 @@
     </div>
     <script type="text/javascript">
     let jump = function (iteration){
-        window.location.href= "group/" + iteration+  "/member";
+        window.location.href= "group/" + iteration;
         //alert("詳細画面へ");
     };
 </script>
