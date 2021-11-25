@@ -75,6 +75,7 @@ class GroupController extends Controller
             return view('error.forbidden');
         }
     }
+
     public function rename($id, Request $request){
         $lv = $this->getPermissionLevel(Auth::id(), $id);
         if ($lv == 1){
@@ -87,6 +88,21 @@ class GroupController extends Controller
             }
             return redirect('/group/'.$id);
         }else{
+            App::abort(403);
+        }
+    }
+
+    public function delete($id, Request $request){
+        $lv = $this->getPermissionLevel(Auth::id(), $id);
+        if ($lv == 1){
+            try {
+                $group = Group::findOrFail($id);
+                $group->delete();
+            } catch (ModelNotFoundException $e){
+                App::abort(404);
+            }
+            return redirect('/');
+        } else {
             App::abort(403);
         }
     }
