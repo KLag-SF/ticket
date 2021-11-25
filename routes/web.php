@@ -32,6 +32,8 @@ Route::get('/group/{id}', 'GroupController@show');
 Route::get('/group/{id}/edit', 'GroupController@edit');
 // Group Rename API
 Route::post('/group/{id}/edit', 'GroupController@rename');
+// Group Delete API
+Route::delete('/group/{id}', 'GroupController@delete');
 // Group's member list
 Route::get('/group/{id}/member', 'PermissionController@show');
 // Add new member page
