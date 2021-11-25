@@ -50,7 +50,7 @@ jobs:
 
   deploy:
     machine:
-      image: alpine
+      image: circleci/classic:edge
     steps:
       - checkout
       - add_ssh_keys:
