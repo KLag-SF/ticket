@@ -18,6 +18,7 @@
                     <th>UID</th>
                     <th>UserName</th>
                     <th>Permission</th>
+                    <th>Remove&#047;Leave</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,27 +49,4 @@
         </table>
     </div>
 
-    <script>
-        function remove(user_id){
-            let group_id = {{$group -> id}};
-            const form = document.createElement('form');
-            form.method = "POST";
-            form.action = "member/remove";
-
-            const uidField = document.createElement('input');
-            uidField.type = 'hidden';
-            uidField.name = "user_id";
-            uidField.value = user_id;
-            form.appendChild(uidField);
-
-            const gidField = document.createElement('input');
-            gidField.type = 'hidden';
-            gidField.name = 'group_id';
-            gidField.value = group_id;
-            form.appendChild(gidField);
-
-            document.body.appendChild(form);
-            form.submit();
-        }
-    </script>
 @endsection
