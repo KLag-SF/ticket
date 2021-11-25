@@ -25,7 +25,7 @@
                 @foreach($groups as $group)
                 <tr>
                     <span class='click_available'>
-                        <td onclick="jump({{$loop->iteration}})">
+                        <td onclick="jump({{$group->id}})">
                         {{$group->group_name}} 
                          </td>
                         <td>{{$group->role_name}}

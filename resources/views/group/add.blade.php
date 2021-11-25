@@ -2,7 +2,6 @@
 
 @section('content')
     <link rel="stylesheet" href="/css/group/add.css">
-    <form method="POST" action="/permission">
         <div>
             Permission Level
             <table>
@@ -47,6 +46,7 @@
                 </tbody>
             </table>
         </div>
+    <form action="/permission" method="POST">
         @csrf
         <input type="hidden" name="group_id" value="{{$group->id}}"/>
         
@@ -60,7 +60,6 @@
             <option value="3">Leader</option>
             <option value="4">Member</option>
         </select>
-
         <button type="submit" class="btn btn-success">Add user</button>
     </form>
 @endsection
