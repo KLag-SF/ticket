@@ -35,6 +35,8 @@ Route::get('/group/{id}/edit', 'GroupController@edit');
 Route::get('/group/{id}/member', 'PermissionController@show');
 // Add new member page
 Route::get('/group/{id}/member/add', 'PermissionController@create');
+// Remove user from the group
+Route::post('/group/{id}/member/remove', 'PermissionController@remove');
 // Create new permission process
 Route::post('/permission', 'PermissionController@store');
 

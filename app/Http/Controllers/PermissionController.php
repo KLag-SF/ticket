@@ -8,7 +8,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Database\ModelNotFoundException;
 
 class PermissionController extends Controller
@@ -24,8 +24,11 @@ class PermissionController extends Controller
                 ->join('users', 'permissions.user_id', '=', 'users.id')
                 ->join('plv', 'permissions.permission_level', '=', 'plv.level')
                 ->get();
+
+        $lv = $this->getPermissionLevel(Auth::id(), $id);
+        $currentId = Auth::id();
         // resources/views/group/member.blade.php
-        return view('group.member', compact('users', 'group'));
+        return view('group.member', compact('users', 'group', 'lv', 'currentId'));
     }
 
     public function create($id)
@@ -64,8 +67,25 @@ class PermissionController extends Controller
         // Redirect to member list
         return redirect($destination);
     }
-    public function delete(Request $request){
-        $permission_lv = $this->getPermissionLevel($request->$user_id, $request->group_id);
-        
+
+    public function remove(Request $request){
+        $permission_lv = $this->getPermissionLevel(Auth::id(), $request->group_id);
+
+        if($permission_lv < 0){
+            App::abort(403);
+        } elseif ($request->user_id == Auth::id()) {
+            // Leaders and Members can delete only themselves.
+            Permission::where("user_id", Auth::id())
+              ->where("group_id", $request->group_id)
+              ->delete();
+            return redirect('/');
+        } elseif ($permission_lv <= 2) {
+            // Administrators and Managers can delete all users from group.
+            Permission::where("user_id", $request->user_id)
+              ->where('group_id', $request->group_id)
+              ->delete();
+            $destination = '/group/'.$request->group_id.'/member';
+            return redirect($destination);
+        }
     }
 }
