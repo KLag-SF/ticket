@@ -38,7 +38,7 @@ add('writable_dirs', []);
 host('ec2-35-76-157-222.ap-northeast-1.compute.amazonaws.com')
     ->setSshArguments(['-o StrictHostKeyChecking=no'])
     ->setRemoteUser('klag')
-    ->setIdentityFile('~/.ssh/id_ed25519')
+    ->setIdentityFile('~/.ssh/circleCI')
     ->set('labels', ['stage' => 'staging'])
     ->set('deploy_path', '/var/www/Ticket');    
     
