@@ -9,7 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Database\ModelNotFoundException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PermissionController extends Controller
 {
