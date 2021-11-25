@@ -48,11 +48,16 @@ jobs:
       #- run: ./vendor/bin/phpunit
       - run: ./vendor/bin/codecept build
       - run: ./vendor/bin/codecept run
-      - run: ./vendor/bin/dep deploy
 
-add_ssh_keys:
-        fingerprints:
-          -  63:e6:d7:4b:68:d5:16:da:e9:b7:f8:8f:75:5d:e1:3d
+  deploy:
+    machine:
+      image: circleci/php:8.0-node-browsers
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - 63:e6:d7:4b:68:d5:16:da:e9:b7:f8:8f:75:5d:e1:3d
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/Ticket && git pull'
 
 workflows:
   version: 2
