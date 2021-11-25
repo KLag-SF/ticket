@@ -6,12 +6,10 @@ use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Task;
-# use App\Models\Task;
-use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GroupController extends Controller
 {
@@ -40,19 +38,28 @@ class GroupController extends Controller
         return view('group.create');
     }
 
-    public function edit($group)
+    public function edit($id, Request $request)
     {
-        if ($this-> getPermissionLevel(Auth::id(), $group) > 0) {
-            return view();
+        try {
+            $group = Group::findOrFail($id);
+        } catch (ModelNotFoundException $e){
+            App::abort(403);
+        }
+
+        if ($this-> getPermissionLevel(Auth::id(), $id) == 1) {
+            return view('group.edit', compact('group'));
+        } else {
+            App::abort(403);
         }
     }
 
     public function show($id, Request $request)
     {
-        if($this -> getPermissionLevel(Auth::id(), $id) > 0){
+        $lv = $this->getPermissionLevel(Auth::id(), $id);
+        if($lv > 0){
             try{
                 $group = Group::findOrFail($id);
-            }catch(Exception $e){
+            }catch(ModelNotFoundException $e){
                 // If a exception was returned, redirect to 404 error page
                 App::abort(404);
             }
@@ -62,10 +69,25 @@ class GroupController extends Controller
                 $tasks = $tasks -> orderBy('title', 'asc');
             }
             $tasks = $tasks->get();
-            return view('group.index', compact('group', 'tasks'));
+            return view('group.index', compact('group', 'tasks', 'lv'));
         }else{
             // If the user doesn't have a permission, return "error" view
             return view('error.forbidden');
+        }
+    }
+    public function rename($id, Request $request){
+        $lv = $this->getPermissionLevel(Auth::id(), $id);
+        if ($lv == 1){
+            try {
+                $group = Group::findOrFail($id);
+                $group->group_name = $request->group_name;
+                $group->save();
+            } catch(ModelNotFoundException $e){
+                App::abort(404);
+            }
+            return redirect('/group/'.$id);
+        }else{
+            App::abort(403);
         }
     }
 }
