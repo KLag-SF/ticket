@@ -51,7 +51,7 @@ jobs:
 
 add_ssh_keys:
         fingerprints:
-          -  89:9b:a9:7c:76:7c:e6:11:34:d5:19:0b:70:16:cc:f9
+          -  "89:9b:a9:7c:76:7c:e6:11:34:d5:19:0b:70:16:cc:f9"
 
 workflows:
   version: 2
