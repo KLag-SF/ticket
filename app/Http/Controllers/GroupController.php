@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class GroupController extends Controller
 {
@@ -41,14 +42,14 @@ class GroupController extends Controller
 
     public function edit($group)
     {
-        if ($this->hasPermission($group)) {
+        if ($this-> getPermissionLevel(Auth::id(), $group) > 0) {
             return view();
         }
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
-        if($this->hasPermission($id)){
+        if($this -> getPermissionLevel(Auth::id(), $id) > 0){
             try{
                 $group = Group::findOrFail($id);
             }catch(Exception $e){
@@ -56,26 +57,15 @@ class GroupController extends Controller
                 App::abort(404);
             }
             // Get the group's task list
-            $tasks = Task::where('group_id', $id)->get();
+            $tasks = Task::where('group_id', $id);
+            if ($request -> orderby == 'title') {
+                $tasks = $tasks -> orderBy('title', 'asc');
+            }
+            $tasks = $tasks->get();
             return view('group.index', compact('group', 'tasks'));
         }else{
             // If the user doesn't have a permission, return "error" view
             return view('error.forbidden');
         }
-    }
-
-    // Check if the user has permission to access group whose id matches $groupId
-    public function hasPermission($groupId){
-        $userId = Auth::id();
-        try{
-            // firstOrFail() method returns a exception when nothing has found 
-            Permission::where('user_id', $userId)
-                        ->where('group_id', $groupId)
-                        ->firstOrFail();
-        }catch(Exception $e){
-            // When catch a exception, user doesn't have a permission
-            return false;
-        }
-        return true;
     }
 }

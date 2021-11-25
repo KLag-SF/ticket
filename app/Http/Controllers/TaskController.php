@@ -44,4 +44,14 @@ class TaskController extends Controller
         // Redirect to group page
         return redirect('/group/'.$groupId);
     }
+    public function show(Request $request, $id){
+        try{
+            $task = Task::findOrFail($id);
+        }catch(Exception $e){
+            // If a exception was returned, redirect to 404 error page
+            App::abort(404);
+        }
+        // Get the group's task list
+        return view('task.index', compact('task'));
+    }
 }
