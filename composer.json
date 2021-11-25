@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-ide-helper": "^2.10",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -24,7 +25,6 @@
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.0.0",
         "codeception/module-phpbrowser": "^1.0.0",
-        "deployer/deployer": "^4.3",
         "deployer/dist": "^6.8",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
