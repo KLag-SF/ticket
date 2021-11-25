@@ -43,6 +43,9 @@ Route::get('/group/{id}/ticket', 'TaskController@create')->middleware('verified'
 // Create new ticket
 Route::post('/group/{id}/ticket', 'TaskController@store');
 
+// Task detail page
+Route::get('/task/{id}/', 'TaskController@show')->middleware('verified');
+
 // Logout process
 Route::get('/logout',function ($request){
    Auth::logout();
