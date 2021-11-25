@@ -50,7 +50,7 @@ jobs:
 
   deploy:
     machine:
-      image: circleci/php:8.0-node-browsers
+      image: alpine
     steps:
       - checkout
       - add_ssh_keys:
