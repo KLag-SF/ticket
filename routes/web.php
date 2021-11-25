@@ -30,7 +30,8 @@ Route::post('/group', 'GroupController@store');
 Route::get('/group/{id}', 'GroupController@show');
 // Group edit page
 Route::get('/group/{id}/edit', 'GroupController@edit');
-
+// Group Rename API
+Route::post('/group/{id}/edit', 'GroupController@rename');
 // Group's member list
 Route::get('/group/{id}/member', 'PermissionController@show');
 // Add new member page
