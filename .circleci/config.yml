@@ -51,8 +51,8 @@ jobs:
 
 add_ssh_keys:
         fingerprints:
-          -  b1:02:4b:12:ac:bd:b6:46:12:47:19:09:aa:82:71:5b
-          
+          -  63:e6:d7:4b:68:d5:16:da:e9:b7:f8:8f:75:5d:e1:3d
+
 workflows:
   version: 2
   build-deploy:
