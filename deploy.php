@@ -40,7 +40,8 @@ host('ec2-35-76-157-222.ap-northeast-1.compute.amazonaws.com')
     ->setRemoteUser('klag')
     ->setIdentityFile('~/.ssh/circleCI')
     ->set('labels', ['stage' => 'staging'])
-    ->set('deploy_path', '/var/www/Ticket');    
+    ->set('deploy_path', '/var/www/Ticket')
+    ->set('ssh_type', 'native');    
     
 // Tasks
 
