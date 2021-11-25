@@ -35,7 +35,7 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('ec2-35-73-226-246.ap-northeast-1.compute.amazonaws.com')
+host('ec2-35-76-157-222.ap-northeast-1.compute.amazonaws.com')
     ->setSshArguments(['-o StrictHostKeyChecking=no'])
     ->setRemoteUser('klag')
     ->setIdentityFile('~/.ssh/id_rsa')
