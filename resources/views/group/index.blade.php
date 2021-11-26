@@ -16,6 +16,7 @@
                     <th>Title</th>
 		            <th>Limit</th>
 		            <th>Progress</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,11 @@
                             <td onclick="location.href='/task/{{$task->id}}'"> {{$task->title}} </td>
 			                <td> {{$task->limit}} </td>
 		    	            <td> {{$task->progress}} &#37; </td>
+                            <td>
+                                <button class="btn btn-success" onclick="location.href='/task/{{$task->id}}/update'">
+                                    Edit
+                                </button>
+                            </td>
                         </span>  
                     </tr>
                 @endforeach
