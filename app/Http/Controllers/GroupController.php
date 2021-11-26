@@ -57,6 +57,7 @@ class GroupController extends Controller
 
     public function show($id, Request $request)
     {
+        $currentId = Auth::id();
         $lv = $this->getPermissionLevel(Auth::id(), $id);
         if($lv > 0){
             try{
@@ -71,7 +72,7 @@ class GroupController extends Controller
                 $tasks = $tasks -> orderBy('title', 'asc');
             }
             $tasks = $tasks->get();
-            return view('group.index', compact('group', 'tasks', 'lv'));
+            return view('group.index', compact('group', 'tasks', 'lv', 'currentId'));
         }else{
             // If the user doesn't have a permission, return "error" view
             return view('error.forbidden');

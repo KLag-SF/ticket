@@ -27,9 +27,11 @@
 			                <td> {{$task->limit}} </td>
 		    	            <td> {{$task->progress}} &#37; </td>
                             <td>
+                                @if(($lv > 0 && $lv <= 2) || ($task->user_id == $currentId))
                                 <button class="btn btn-success" onclick="location.href='/task/{{$task->id}}/update'">
                                     Edit
                                 </button>
+                                @endif
                             </td>
                         </span>  
                     </tr>
