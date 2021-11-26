@@ -38,7 +38,7 @@ class GroupController extends Controller
         return view('group.create');
     }
 
-    public function edit($id, Request $request)
+    public function edit($id)
     {
         try {
             $group = Group::findOrFail($id);
@@ -51,6 +51,8 @@ class GroupController extends Controller
         } else {
             App::abort(403);
         }
+
+        return null;
     }
 
     public function show($id, Request $request)
@@ -90,9 +92,11 @@ class GroupController extends Controller
         }else{
             App::abort(403);
         }
+
+        return null;
     }
 
-    public function delete($id, Request $request){
+    public function delete($id){
         $lv = $this->getPermissionLevel(Auth::id(), $id);
         if ($lv == 1){
             try {
@@ -105,5 +109,7 @@ class GroupController extends Controller
         } else {
             App::abort(403);
         }
+
+        return null;
     }
 }
