@@ -4,12 +4,13 @@
     <div class="group-name">
         GROUP:{{$group->group_name}}
     </div>
-
+    @if($lv > 0 && $lv <= 2)
     <div class="add-user">
         <button class="btn btn-primary" onclick="location.href='member/add'">
             Add user
         </button>
     </div>
+    @endif
 
     <div class="member-list">
         <table class="table">
@@ -28,7 +29,7 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->role_name}}</td>
                     <td>
-                        @if($lv > 0 && $lv <= 2)
+                        @if($lv > 0 && $lv <= 2 || $user->id == $currentId)
                         <form action="member/remove" method="post">
                             @csrf
                             <input type="hidden" name="group_id" value="{{$group->id}}">
