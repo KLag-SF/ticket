@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
+// use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -23,8 +24,9 @@ class TaskController extends Controller
         } catch (ModelNotFoundException $e){
             App::abort(404);
         }
-        $lv = $this->getPermissionLevel(Auth::user(), $task->group_id);
-        if (($lv <= 2 && $lv > 0) || (Auth::id() == $task->user_id)){
+
+        $lv = $this->getPermissionLevel(Auth::id(), $task->group_id);
+        if (($lv > 0 && $lv <= 2) || (Auth::id() == $task->user_id)){
             return view('task.update', compact('task'));
         } else {
             App::abort(403);
