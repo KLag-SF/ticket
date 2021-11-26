@@ -50,6 +50,12 @@ Route::post('/group/{id}/ticket', 'TaskController@store');
 
 // Task detail page
 Route::get('/task/{id}/', 'TaskController@show')->middleware('verified');
+// Update existing tickets
+Route::put('/group/{id}/ticket', 'TaskController@update');
+// Task edit form
+Route::get('/task/{id}/update', 'TaskController@edit');
+// Delete Task
+Route::delete('/task/{id}', 'TaskController@delete');
 
 // Logout process
 Route::get('/logout',function ($request){
