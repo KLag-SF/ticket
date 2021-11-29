@@ -40,7 +40,7 @@
                         <td>Member</td>
                         <td>False</td>
                         <td>False</td>
-                        <td>False</td>
+                        <td>Self only</td>
                         <td>True</td>
                     </tr>
                 </tbody>
