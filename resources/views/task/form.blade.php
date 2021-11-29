@@ -17,7 +17,7 @@
                     <label for="title">
                         Task Title
                     </label>
-                    <input name="title" class="form-control" type="text" value="{{$task->id}}"/>
+                    <input name="title" class="form-control" type="text" value="{{$task->id}}" required/>
                 </div>
                 <div>
                     <label for="detail">
@@ -29,13 +29,13 @@
                     <label for="limit">
                         Limit
                     </label>
-                    <input type="date" name="limit" value="{{$task->limit}}"/>
+                    <input type="date" name="limit" value="{{$task->limit}}" required/>
                 </div>
                 <div>
                     <label for="progress">
                         Progress
                     </label>
-                    <input type="number" name="progress" value="{{$task->progress}}"/>
+                    <input type="number" name="progress" value="{{$task->progress}}" required/>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
